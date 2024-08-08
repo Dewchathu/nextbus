@@ -17,19 +17,20 @@ class _CustomFormFieldState extends State<CustomFormField> {
     return TextFormField(
       controller: widget.controller,
       validator: widget.validator,
-      style: const TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.black),
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintStyle: const TextStyle(color: Colors.grey),
         errorStyle: const TextStyle(color: Colors.red),
         filled: true,
-        fillColor: const Color(0xFF303030),
+        fillColor: Colors.white,
         contentPadding: const EdgeInsets.all(14.0),
         focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.white),
           borderRadius: BorderRadius.circular(10.0),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Color(0xFF303030)),
+          borderSide: const BorderSide(color: Colors.white),
           borderRadius: BorderRadius.circular(10.0),
         ),
         errorBorder: OutlineInputBorder(
