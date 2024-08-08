@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nextbus/widgets/custom_form_field.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,11 +10,48 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
+  late TextEditingController startLocationController;
+  late TextEditingController endLocationController;
 
-  final List<Widget> _pages = [
-    const Center(child: Text('Home')),
-    const Center(child: Text('Settings')),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    startLocationController = TextEditingController();
+    endLocationController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    startLocationController.dispose();
+    endLocationController.dispose();
+    super.dispose();
+  }
+
+  List<Widget> _buildPages() {
+    return [
+      Padding(
+        padding: const EdgeInsets.all(20),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              CustomFormField(
+                hintText: 'Start Location',
+                controller: startLocationController,
+              ),
+              const SizedBox(height: 20),
+              CustomFormField(
+                hintText: 'End Location',
+                controller: endLocationController,
+              ),
+            ],
+          ),
+        ),
+      ),
+      const Center(child: Text('Settings')),
+    ];
+  }
 
   void _onTabTapped(int index) {
     setState(() {
@@ -24,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_currentIndex],
+      body: _buildPages()[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onTabTapped,
