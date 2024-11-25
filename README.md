@@ -1,6 +1,6 @@
 # nextbus
 
-A new Flutter project.
+A sample Flutter project.
 
 
 
